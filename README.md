@@ -49,16 +49,16 @@ The output maps are designed for WebGL/WebGPU/canvas remap pipelines.
 ## Installation
 
 ```bash
-npm install lensfun-wasm
+npm install @lexluthor0304/lensfun-wasm
 ```
 
 ## Quick Start (Bundler)
 
 ```ts
-import { createLensfun } from 'lensfun-wasm';
-import createLensfunCoreModule from 'lensfun-wasm/core';
-import wasmUrl from 'lensfun-wasm/core-wasm?url';
-import dataUrl from 'lensfun-wasm/core-data?url';
+import { createLensfun } from '@lexluthor0304/lensfun-wasm';
+import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core';
+import wasmUrl from '@lexluthor0304/lensfun-wasm/core-wasm?url';
+import dataUrl from '@lexluthor0304/lensfun-wasm/core-data?url';
 
 const client = await createLensfun({
   moduleFactory: createLensfunCoreModule,
@@ -76,8 +76,8 @@ console.log(lenses[0]);
 ## Quick Start (CDN)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
 <script>
 (async () => {
   const client = await LensfunWasm.createLensfun();
@@ -94,7 +94,7 @@ console.log(lenses[0]);
 `options` (`LensfunInitOptions`):
 
 - `moduleFactory?: (opts) => Promise<LensfunModule>`
-  - Recommended in bundlers. Usually from `import createLensfunCoreModule from 'lensfun-wasm/core'`.
+  - Recommended in bundlers. Usually from `import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core'`.
 - `moduleJsUrl?: string`
   - Optional fallback URL for loading `lensfun-core.js` dynamically.
 - `wasmUrl?: string`
@@ -224,6 +224,49 @@ Includes:
 - JS bundle build
 - Type declaration build
 - Vitest unit tests
+
+## Publish (npm + GitHub Packages, Automated)
+
+This repository is configured to publish from GitHub Actions when a `v*` tag is pushed.
+
+Workflow: `.github/workflows/release.yml`
+
+Release guardrails already enabled:
+
+1. Tag/version match check (`vX.Y.Z` must equal `package.json` version)
+2. Build + test
+3. `npm pack --dry-run` verification
+4. Publish to npmjs.org with provenance (`npm publish --provenance`)
+5. Publish to GitHub Packages (`npm.pkg.github.com`)
+
+Setup once:
+
+1. Create an npm Automation Token with publish permission.
+2. Add it to repository secrets as `NPM_TOKEN`.
+3. Keep GitHub Actions default `GITHUB_TOKEN` enabled (used for GitHub Packages publish).
+
+Release commands:
+
+```bash
+git checkout main
+git pull --ff-only
+
+# package.json version must already be set (example: 0.1.0)
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+Post-release check:
+
+```bash
+npm view @lexluthor0304/lensfun-wasm version dist-tags --json
+npm view @lexluthor0304/lensfun-wasm --registry=https://npm.pkg.github.com
+```
+
+CDN note:
+
+- jsDelivr automatically reflects the npmjs.org package.
+- Publishing to GitHub Packages does not affect jsDelivr availability.
 
 ## Upstream Sync Policy
 

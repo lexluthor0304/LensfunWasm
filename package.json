@@ -1,8 +1,12 @@
 {
-  "name": "lensfun-wasm",
+  "name": "@lexluthor0304/lensfun-wasm",
   "version": "0.1.0",
   "description": "Lensfun compiled to WebAssembly with a high-level JS API for browser frontends.",
   "license": "LGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexluthor0304/LensfunWasm.git"
+  },
   "type": "module",
   "main": "./dist/umd/index.iife.js",
   "module": "./dist/esm/index.js",
@@ -37,7 +41,9 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build": "npm run build:wasm && npm run build:js && npm run build:types",
     "test": "vitest run",
-    "check": "npm run build:js && npm run build:types && npm run test"
+    "check": "npm run build:js && npm run build:types && npm run test",
+    "pack:dry-run": "npm pack --dry-run",
+    "release:verify-tag": "node scripts/verify-release-tag.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
