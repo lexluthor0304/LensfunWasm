@@ -241,17 +241,6 @@ npm run check
 1. npm で publish 権限付き Automation Token を作成
 2. GitHub リポジトリ Secret に `NPM_TOKEN` を登録
 
-公開コマンド:
-
-```bash
-git checkout main
-git pull --ff-only
-
-# package.json の version は事前に設定（例: 0.1.0）
-git tag v0.1.0
-git push origin v0.1.0
-```
-
 公開後確認:
 
 ```bash

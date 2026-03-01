@@ -241,17 +241,6 @@ npm run check
 1. 在 npm 创建可发布的 Automation Token
 2. 在 GitHub 仓库 Secrets 中添加 `NPM_TOKEN`
 
-发布命令：
-
-```bash
-git checkout main
-git pull --ff-only
-
-# package.json 版本需已设置（示例：0.1.0）
-git tag v0.1.0
-git push origin v0.1.0
-```
-
 发布后校验：
 
 ```bash

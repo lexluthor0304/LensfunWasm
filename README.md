@@ -243,17 +243,6 @@ Setup once:
 1. Create an npm Automation Token with publish permission.
 2. Add it to repository secrets as `NPM_TOKEN`.
 
-Release commands:
-
-```bash
-git checkout main
-git pull --ff-only
-
-# package.json version must already be set (example: 0.1.0)
-git tag v0.1.0
-git push origin v0.1.0
-```
-
 Post-release check:
 
 ```bash
