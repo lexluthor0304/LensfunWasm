@@ -1,6 +1,6 @@
 {
-  "name": "@lexluthor0304/lensfun-wasm",
-  "version": "0.1.0",
+  "name": "@neoanaloglabkk/lensfun-wasm",
+  "version": "0.1.1",
   "description": "Lensfun compiled to WebAssembly with a high-level JS API for browser frontends.",
   "license": "LGPL-3.0-or-later",
   "repository": {

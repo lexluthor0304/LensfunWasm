@@ -49,16 +49,16 @@ The output maps are designed for WebGL/WebGPU/canvas remap pipelines.
 ## Installation
 
 ```bash
-npm install @lexluthor0304/lensfun-wasm
+npm install @neoanaloglabkk/lensfun-wasm
 ```
 
 ## Quick Start (Bundler)
 
 ```ts
-import { createLensfun } from '@lexluthor0304/lensfun-wasm';
-import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core';
-import wasmUrl from '@lexluthor0304/lensfun-wasm/core-wasm?url';
-import dataUrl from '@lexluthor0304/lensfun-wasm/core-data?url';
+import { createLensfun } from '@neoanaloglabkk/lensfun-wasm';
+import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core';
+import wasmUrl from '@neoanaloglabkk/lensfun-wasm/core-wasm?url';
+import dataUrl from '@neoanaloglabkk/lensfun-wasm/core-data?url';
 
 const client = await createLensfun({
   moduleFactory: createLensfunCoreModule,
@@ -76,8 +76,8 @@ console.log(lenses[0]);
 ## Quick Start (CDN)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
 <script>
 (async () => {
   const client = await LensfunWasm.createLensfun();
@@ -94,7 +94,7 @@ console.log(lenses[0]);
 `options` (`LensfunInitOptions`):
 
 - `moduleFactory?: (opts) => Promise<LensfunModule>`
-  - Recommended in bundlers. Usually from `import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core'`.
+  - Recommended in bundlers. Usually from `import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core'`.
 - `moduleJsUrl?: string`
   - Optional fallback URL for loading `lensfun-core.js` dynamically.
 - `wasmUrl?: string`
@@ -225,9 +225,9 @@ Includes:
 - Type declaration build
 - Vitest unit tests
 
-## Publish (npm + GitHub Packages, Automated)
+## Publish (npm + jsDelivr, Automated)
 
-This repository is configured to publish from GitHub Actions when a `v*` tag is pushed.
+This repository is configured to publish to npmjs.org from GitHub Actions when a `v*` tag is pushed.
 
 Workflow: `.github/workflows/release.yml`
 
@@ -237,13 +237,11 @@ Release guardrails already enabled:
 2. Build + test
 3. `npm pack --dry-run` verification
 4. Publish to npmjs.org with provenance (`npm publish --provenance`)
-5. Publish to GitHub Packages (`npm.pkg.github.com`)
 
 Setup once:
 
 1. Create an npm Automation Token with publish permission.
 2. Add it to repository secrets as `NPM_TOKEN`.
-3. Keep GitHub Actions default `GITHUB_TOKEN` enabled (used for GitHub Packages publish).
 
 Release commands:
 
@@ -259,14 +257,12 @@ git push origin v0.1.0
 Post-release check:
 
 ```bash
-npm view @lexluthor0304/lensfun-wasm version dist-tags --json
-npm view @lexluthor0304/lensfun-wasm --registry=https://npm.pkg.github.com
+npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
 ```
 
 CDN note:
 
 - jsDelivr automatically reflects the npmjs.org package.
-- Publishing to GitHub Packages does not affect jsDelivr availability.
 
 ## Upstream Sync Policy
 

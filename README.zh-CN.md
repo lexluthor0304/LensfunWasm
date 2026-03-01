@@ -49,16 +49,16 @@
 ## 安装
 
 ```bash
-npm install @lexluthor0304/lensfun-wasm
+npm install @neoanaloglabkk/lensfun-wasm
 ```
 
 ## 快速开始（打包器）
 
 ```ts
-import { createLensfun } from '@lexluthor0304/lensfun-wasm';
-import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core';
-import wasmUrl from '@lexluthor0304/lensfun-wasm/core-wasm?url';
-import dataUrl from '@lexluthor0304/lensfun-wasm/core-data?url';
+import { createLensfun } from '@neoanaloglabkk/lensfun-wasm';
+import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core';
+import wasmUrl from '@neoanaloglabkk/lensfun-wasm/core-wasm?url';
+import dataUrl from '@neoanaloglabkk/lensfun-wasm/core-data?url';
 
 const client = await createLensfun({
   moduleFactory: createLensfunCoreModule,
@@ -76,8 +76,8 @@ console.log(lenses[0]);
 ## 快速开始（CDN）
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
 <script>
 (async () => {
   const client = await LensfunWasm.createLensfun();
@@ -94,7 +94,7 @@ console.log(lenses[0]);
 `options`（`LensfunInitOptions`）字段：
 
 - `moduleFactory?: (opts) => Promise<LensfunModule>`
-  - 打包器场景推荐。通常来自 `import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core'`。
+  - 打包器场景推荐。通常来自 `import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core'`。
 - `moduleJsUrl?: string`
   - 动态加载 `lensfun-core.js` 的备用方式。
 - `wasmUrl?: string`
@@ -224,9 +224,9 @@ npm run check
 - 类型声明生成
 - Vitest 单测
 
-## 自动发布（npm + GitHub Packages）
+## 自动发布（npm + jsDelivr）
 
-仓库已配置为：推送 `v*` tag 后由 GitHub Actions 自动双发布。  
+仓库已配置为：推送 `v*` tag 后由 GitHub Actions 自动发布到 npmjs.org。  
 对应工作流：`.github/workflows/release.yml`
 
 已启用的发布保护：
@@ -235,13 +235,11 @@ npm run check
 2. 构建与测试
 3. `npm pack --dry-run` 打包校验
 4. 发布到 npmjs.org（带 provenance）
-5. 发布到 GitHub Packages（`npm.pkg.github.com`）
 
 一次性配置：
 
 1. 在 npm 创建可发布的 Automation Token
 2. 在 GitHub 仓库 Secrets 中添加 `NPM_TOKEN`
-3. 保持 GitHub Actions 默认 `GITHUB_TOKEN` 可用（用于 GitHub Packages 发布）
 
 发布命令：
 
@@ -257,14 +255,12 @@ git push origin v0.1.0
 发布后校验：
 
 ```bash
-npm view @lexluthor0304/lensfun-wasm version dist-tags --json
-npm view @lexluthor0304/lensfun-wasm --registry=https://npm.pkg.github.com
+npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
 ```
 
 CDN 说明：
 
 - jsDelivr 只会自动同步 npmjs.org 的包。
-- 发布到 GitHub Packages 不会影响 jsDelivr 是否可用。
 
 ## 上游同步策略
 

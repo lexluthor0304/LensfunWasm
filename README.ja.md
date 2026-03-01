@@ -49,16 +49,16 @@
 ## インストール
 
 ```bash
-npm install @lexluthor0304/lensfun-wasm
+npm install @neoanaloglabkk/lensfun-wasm
 ```
 
 ## クイックスタート（バンドラ）
 
 ```ts
-import { createLensfun } from '@lexluthor0304/lensfun-wasm';
-import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core';
-import wasmUrl from '@lexluthor0304/lensfun-wasm/core-wasm?url';
-import dataUrl from '@lexluthor0304/lensfun-wasm/core-data?url';
+import { createLensfun } from '@neoanaloglabkk/lensfun-wasm';
+import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core';
+import wasmUrl from '@neoanaloglabkk/lensfun-wasm/core-wasm?url';
+import dataUrl from '@neoanaloglabkk/lensfun-wasm/core-data?url';
 
 const client = await createLensfun({
   moduleFactory: createLensfunCoreModule,
@@ -76,8 +76,8 @@ console.log(lenses[0]);
 ## クイックスタート（CDN）
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@lexluthor0304/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
 <script>
 (async () => {
   const client = await LensfunWasm.createLensfun();
@@ -94,7 +94,7 @@ console.log(lenses[0]);
 `options`（`LensfunInitOptions`）:
 
 - `moduleFactory?: (opts) => Promise<LensfunModule>`
-  - バンドラ利用時の推奨。通常 `import createLensfunCoreModule from '@lexluthor0304/lensfun-wasm/core'`。
+  - バンドラ利用時の推奨。通常 `import createLensfunCoreModule from '@neoanaloglabkk/lensfun-wasm/core'`。
 - `moduleJsUrl?: string`
   - `lensfun-core.js` の動的ロード URL。
 - `wasmUrl?: string`
@@ -224,9 +224,9 @@ npm run check
 - 型定義生成
 - Vitest 単体テスト
 
-## 自動公開（npm + GitHub Packages）
+## 自動公開（npm + jsDelivr）
 
-このリポジトリは `v*` タグの push で GitHub Actions から自動で二重公開します。  
+このリポジトリは `v*` タグの push で GitHub Actions から npmjs.org に自動公開します。  
 対象ワークフロー: `.github/workflows/release.yml`
 
 公開前ガード:
@@ -235,13 +235,11 @@ npm run check
 2. ビルド + テスト
 3. `npm pack --dry-run` によるパッケージ検証
 4. npmjs.org へ provenance 付き公開
-5. GitHub Packages（`npm.pkg.github.com`）へ公開
 
 初回設定:
 
 1. npm で publish 権限付き Automation Token を作成
 2. GitHub リポジトリ Secret に `NPM_TOKEN` を登録
-3. GitHub Actions の既定 `GITHUB_TOKEN` を有効のままにする（GitHub Packages 公開で使用）
 
 公開コマンド:
 
@@ -257,14 +255,12 @@ git push origin v0.1.0
 公開後確認:
 
 ```bash
-npm view @lexluthor0304/lensfun-wasm version dist-tags --json
-npm view @lexluthor0304/lensfun-wasm --registry=https://npm.pkg.github.com
+npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
 ```
 
 CDN 補足:
 
 - jsDelivr は npmjs.org の公開内容を自動反映します。
-- GitHub Packages への公開は jsDelivr の可用性に影響しません。
 
 ## 上流同期ポリシー
 
