@@ -224,33 +224,6 @@ npm run check
 - 型定義生成
 - Vitest 単体テスト
 
-## 自動公開（npm + jsDelivr）
-
-このリポジトリは `v*` タグの push で GitHub Actions から npmjs.org に自動公開します。  
-対象ワークフロー: `.github/workflows/release.yml`
-
-公開前ガード:
-
-1. タグとバージョンの一致チェック（`vX.Y.Z` と `package.json` の `version`）
-2. ビルド + テスト
-3. `npm pack --dry-run` によるパッケージ検証
-4. npmjs.org へ provenance 付き公開
-
-初回設定:
-
-1. npm で publish 権限付き Automation Token を作成
-2. GitHub リポジトリ Secret に `NPM_TOKEN` を登録
-
-公開後確認:
-
-```bash
-npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
-```
-
-CDN 補足:
-
-- jsDelivr は npmjs.org の公開内容を自動反映します。
-
 ## 上流同期ポリシー
 
 - Lensfun は submodule の固定コミットで管理

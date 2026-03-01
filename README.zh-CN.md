@@ -224,33 +224,6 @@ npm run check
 - 类型声明生成
 - Vitest 单测
 
-## 自动发布（npm + jsDelivr）
-
-仓库已配置为：推送 `v*` tag 后由 GitHub Actions 自动发布到 npmjs.org。  
-对应工作流：`.github/workflows/release.yml`
-
-已启用的发布保护：
-
-1. tag 与版本一致性校验（`vX.Y.Z` 必须等于 `package.json` 的 `version`）
-2. 构建与测试
-3. `npm pack --dry-run` 打包校验
-4. 发布到 npmjs.org（带 provenance）
-
-一次性配置：
-
-1. 在 npm 创建可发布的 Automation Token
-2. 在 GitHub 仓库 Secrets 中添加 `NPM_TOKEN`
-
-发布后校验：
-
-```bash
-npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
-```
-
-CDN 说明：
-
-- jsDelivr 只会自动同步 npmjs.org 的包。
-
 ## 上游同步策略
 
 - Lensfun 通过 submodule 固定 commit 管理。

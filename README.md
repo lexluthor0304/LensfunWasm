@@ -225,34 +225,6 @@ Includes:
 - Type declaration build
 - Vitest unit tests
 
-## Publish (npm + jsDelivr, Automated)
-
-This repository is configured to publish to npmjs.org from GitHub Actions when a `v*` tag is pushed.
-
-Workflow: `.github/workflows/release.yml`
-
-Release guardrails already enabled:
-
-1. Tag/version match check (`vX.Y.Z` must equal `package.json` version)
-2. Build + test
-3. `npm pack --dry-run` verification
-4. Publish to npmjs.org with provenance (`npm publish --provenance`)
-
-Setup once:
-
-1. Create an npm Automation Token with publish permission.
-2. Add it to repository secrets as `NPM_TOKEN`.
-
-Post-release check:
-
-```bash
-npm view @neoanaloglabkk/lensfun-wasm version dist-tags --json
-```
-
-CDN note:
-
-- jsDelivr automatically reflects the npmjs.org package.
-
 ## Upstream Sync Policy
 
 - Lensfun is tracked by pinned submodule commit.
