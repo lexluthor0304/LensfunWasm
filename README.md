@@ -76,8 +76,8 @@ console.log(lenses[0]);
 ## Quick Start (CDN)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/assets/lensfun-core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.0/dist/umd/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.2/dist/assets/lensfun-core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@neoanaloglabkk/lensfun-wasm@0.1.2/dist/umd/index.iife.js"></script>
 <script>
 (async () => {
   const client = await LensfunWasm.createLensfun();
